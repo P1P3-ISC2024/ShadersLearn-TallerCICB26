@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bmvlu55wsy8us"]
+
+[ext_resource type="Script" uid="uid://c4jfe1lurh7h" path="res://Planetario/Scripts/Celeste.gd" id="1_88u12"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ditd"]
+
+[node name="CuerpoCeleste" type="RigidBody2D" unique_id=1416672413]
+mass = 100.0
+gravity_scale = 0.0
+script = ExtResource("1_88u12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=156318320]
+shape = SubResource("CircleShape2D_7ditd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=988902078]

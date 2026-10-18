@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b0a0m1bbfe76p"]
+
+[ext_resource type="Shader" uid="uid://cc31qn0cullq8" path="res://UV/Func.gdshader" id="1_1obxd"]
+[ext_resource type="Shader" uid="uid://37wume7o3d0h" path="res://UV/Shaders/WaterShader.gdshader" id="1_iw04u"]
+[ext_resource type="Texture2D" uid="uid://ctjjqf3un8ucx" path="res://icon.svg" id="2_1obxd"]
+[ext_resource type="Shader" uid="uid://doaos5y26xtph" path="res://UV/Shaders/UV.gdshader" id="3_417k2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iw04u"]
+shader = ExtResource("1_1obxd")
+shader_parameter/brillo = 1.6600000000000001
+shader_parameter/color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1obxd"]
+shader = ExtResource("3_417k2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ditd"]
+shader = ExtResource("1_iw04u")
+
+[node name="Tests" type="Node2D" unique_id=176722166]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=546425732]
+z_index = -1
+material = SubResource("ShaderMaterial_iw04u")
+position = Vector2(125, 6)
+texture = ExtResource("2_1obxd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=563452409]
+z_index = -1
+material = SubResource("ShaderMaterial_1obxd")
+position = Vector2(281, 2)
+texture = ExtResource("2_1obxd")
+
+[node name="Water" type="Sprite2D" parent="." unique_id=864664874]
+z_index = 1
+material = SubResource("ShaderMaterial_7ditd")
+position = Vector2(137, 71)
+texture = ExtResource("2_1obxd")

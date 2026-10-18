@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://mqm76oejmd8o"]
+
+[ext_resource type="Texture2D" uid="uid://efhqv7ysv5d" path="res://Planetario/Sprites/ViaLactea.jpg" id="1_fhxti"]
+[ext_resource type="Script" uid="uid://cc86i5kj3ap4g" path="res://Planetario/Scripts/Gravedad.gd" id="2_qm5cn"]
+[ext_resource type="PackedScene" uid="uid://bmvlu55wsy8us" path="res://Planetario/CuerpoCeleste.tscn" id="3_cmnoc"]
+[ext_resource type="Texture2D" uid="uid://bmmd4q1t4xuwm" path="res://Planetario/Sprites/icons8-planeta-48.png" id="4_cmnoc"]
+[ext_resource type="Texture2D" uid="uid://icjlhk76y2dd" path="res://Planetario/Sprites/sol.png" id="5_cmnoc"]
+[ext_resource type="Shader" uid="uid://byt4bek78lrkl" path="res://Planetario/Shaders/Curvatura.gdshader" id="6_sxk5h"]
+[ext_resource type="Texture2D" uid="uid://ctjjqf3un8ucx" path="res://icon.svg" id="7_8wcgq"]
+[ext_resource type="Script" uid="uid://c8oy01jhwq12o" path="res://Planetario/Scripts/deformación.gd" id="7_kjcyc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ditd"]
+shader = ExtResource("6_sxk5h")
+shader_parameter/pos = Vector2(0.5, 0.5)
+shader_parameter/radio_1 = 0.008
+shader_parameter/radio_2 = 0.1
+shader_parameter/centro = Vector2(0, 0)
+
+[node name="Planetario" type="Node2D" unique_id=2047636794]
+
+[node name="Fondo" type="Sprite2D" parent="." unique_id=716219281]
+position = Vector2(579, 320)
+scale = Vector2(1.1272067, 1.1320194)
+texture = ExtResource("1_fhxti")
+
+[node name="Objetos" type="Node" parent="." unique_id=1210899945 node_paths=PackedStringArray("planetas")]
+script = ExtResource("2_qm5cn")
+planetas = [NodePath("CuerpoCeleste"), NodePath("CuerpoCeleste2"), NodePath("CuerpoCeleste3"), NodePath("CuerpoCeleste4")]
+g = 3000.0
+
+[node name="CuerpoCeleste" parent="Objetos" unique_id=849430046 instance=ExtResource("3_cmnoc")]
+position = Vector2(576, 324)
+mass = 200000.0
+initial_force = Vector2(10, 0)
+
+[node name="CollisionShape2D" parent="Objetos/CuerpoCeleste" index="0" unique_id=156318320]
+scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" parent="Objetos/CuerpoCeleste" index="1" unique_id=988902078]
+visible = false
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_cmnoc")
+
+[node name="Deformación" type="Sprite2D" parent="Objetos/CuerpoCeleste" unique_id=2051244441]
+z_index = 1
+material = SubResource("ShaderMaterial_7ditd")
+texture = ExtResource("7_8wcgq")
+script = ExtResource("7_kjcyc")
+
+[node name="CuerpoCeleste2" parent="Objetos" unique_id=958013918 instance=ExtResource("3_cmnoc")]
+position = Vector2(142, 306)
+mass = 50.0
+initial_force = Vector2(300, 50)
+
+[node name="CollisionShape2D" parent="Objetos/CuerpoCeleste2" index="0" unique_id=156318320]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="Objetos/CuerpoCeleste2" index="1" unique_id=988902078]
+modulate = Color(0, 0.943033, 0, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_cmnoc")
+
+[node name="CuerpoCeleste3" parent="Objetos" unique_id=1329183319 instance=ExtResource("3_cmnoc")]
+position = Vector2(584, 439)
+mass = 800.0
+initial_force = Vector2(180, -10)
+
+[node name="Sprite2D" parent="Objetos/CuerpoCeleste3" index="1" unique_id=988902078]
+modulate = Color(0.7644749, 0.39759243, 5.7756904e-07, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_cmnoc")
+
+[node name="CuerpoCeleste4" parent="Objetos" unique_id=1416672413 instance=ExtResource("3_cmnoc")]
+position = Vector2(195, 600)
+mass = 20000.0
+initial_force = Vector2(250, 0)
+
+[node name="CollisionShape2D" parent="Objetos/CuerpoCeleste4" index="0" unique_id=156318320]
+scale = Vector2(3, 3)
+
+[node name="Sprite2D" parent="Objetos/CuerpoCeleste4" index="1" unique_id=988902078]
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("5_cmnoc")
+
+[editable path="Objetos/CuerpoCeleste"]
+[editable path="Objetos/CuerpoCeleste2"]
+[editable path="Objetos/CuerpoCeleste3"]
+[editable path="Objetos/CuerpoCeleste4"]

@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cyxmbwqt3qmey"]
+
+[ext_resource type="Shader" uid="uid://ci8gopy3wxmm8" path="res://Mar/Shaders/Marcito.gdshader" id="1_byp74"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_y0db1"]
+noise_type = 4
+frequency = 0.1465
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o321m"]
+noise = SubResource("FastNoiseLite_y0db1")
+seamless = true
+seamless_blend_skirt = 0.468
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gssyg"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t6p02"]
+noise = SubResource("FastNoiseLite_gssyg")
+seamless = true
+as_normal_map = true
+bump_strength = 12.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui1xq"]
+render_priority = 0
+shader = ExtResource("1_byp74")
+shader_parameter/frec = Vector2(0.725, 1.51)
+shader_parameter/vel = Vector2(1.205, 6.695)
+shader_parameter/alt = Vector2(0.38, 0.025)
+shader_parameter/color_deep = Color(0.07851847, 0.29727003, 0.60138804, 1)
+shader_parameter/color_surface = Color(0.29803923, 0.69411767, 0.74509805, 0.5411765)
+shader_parameter/noise = SubResource("NoiseTexture2D_t6p02")
+shader_parameter/des_1 = 0.0330000015675
+shader_parameter/des_2 = 0.0610000028975
+shader_parameter/emition = 0.8710000176225
+shader_parameter/rugosidad = 0.20000000298024
+shader_parameter/metalicidad = 0.20000000298024
+shader_parameter/espuma = SubResource("NoiseTexture2D_o321m")
+shader_parameter/alt_esp = 0.71200003382
+shader_parameter/i_espuma = 0.08800000418
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7ditd"]
+material = SubResource("ShaderMaterial_ui1xq")
+size = Vector2(10, 10)
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ditd"]
+
+[node name="Marcito" type="Node3D" unique_id=2084993142]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1740339546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5091649, 0.91534436, -0.74575543)
+mesh = SubResource("PlaneMesh_7ditd")
+
+[node name="Cubin" type="MeshInstance3D" parent="." unique_id=579538952]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.84430003, 0)
+mesh = SubResource("BoxMesh_7ditd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=797158599]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 4.357793, 0)

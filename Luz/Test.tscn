@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cicdv7gtubimx"]
+
+[ext_resource type="Shader" uid="uid://bapj21w5x4oke" path="res://Luz/LuzExp.gdshader" id="1_5bygv"]
+[ext_resource type="Texture2D" uid="uid://ctjjqf3un8ucx" path="res://icon.svg" id="2_slkst"]
+[ext_resource type="Shader" uid="uid://cgpxjpqyo34c7" path="res://Luz/Normals.gdshader" id="3_ui1xq"]
+[ext_resource type="Texture2D" uid="uid://ejlh4a8fx8nu" path="res://Luz/Alturas.png" id="4_ybvi5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kf0yc"]
+shader = ExtResource("1_5bygv")
+
+[sub_resource type="Gradient" id="Gradient_ui1xq"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ow4nv"]
+gradient = SubResource("Gradient_ui1xq")
+fill = 1
+fill_from = Vector2(0.5121951, 0.51707315)
+fill_to = Vector2(0, 0.50731707)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5bygv"]
+closed = false
+polygon = PackedVector2Array(0, -25, -31, 17, 20, 23, 29, -9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ditd"]
+shader = ExtResource("3_ui1xq")
+shader_parameter/fuerza = 0.026000001235
+
+[node name="Test" type="Node2D" unique_id=1740840705]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=384158548]
+material = SubResource("ShaderMaterial_kf0yc")
+texture = ExtResource("2_slkst")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=519007419]
+position = Vector2(11.999999, 32.000004)
+scale = Vector2(5, 5)
+energy = 2.69
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ow4nv")
+texture_scale = 2.6
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1095523514]
+position = Vector2(28, -8)
+occluder = SubResource("OccluderPolygon2D_5bygv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1655322362]
+material = SubResource("ShaderMaterial_7ditd")
+position = Vector2(-749, -57)
+texture = ExtResource("4_ybvi5")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=199811145]
+visible = false
+position = Vector2(-752.99994, -13)
+rotation = -4.82409
+color = Color(0, 1, 1, 1)
+energy = 10.0
